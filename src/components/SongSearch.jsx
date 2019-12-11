@@ -9,9 +9,11 @@ function SongSearch(){
         if (!input.value.trim()) {
           return;
         }
+        /*eslint-disable*/
         // ...we'll add more custom logic here later...
         console.log('SEARCHED ARTIST:');
         console.log(input.value.trim());
+        /*eslint-enable*/
         //...instead of these console.log()s....
         input.value = '';
       }}>

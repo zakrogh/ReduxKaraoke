@@ -1,6 +1,6 @@
 import constants from './../constants';
 const { initialState, types } = constants;
-
+/*eslint-disable*/
 const lyricChangeReducer = (state = initialState.songsById, action) => {
   let newSongsByIdEntry;
   let newSongsByIdStateSlice;
@@ -26,5 +26,5 @@ const lyricChangeReducer = (state = initialState.songsById, action) => {
     return state;
   }
 };
-
+/*eslint-enable*/
 export default lyricChangeReducer;

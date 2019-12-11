@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --open",
     "lint": "eslint src/** src/**/**; exit 0",
     "lint-fix": "eslint src/** src/**/** --fix; exit 0"
   },
@@ -32,6 +32,6 @@
     "react-hot-loader": "^3.0.0-beta.7",
     "style-loader": "^0.18.2",
     "webpack": "^2.6.0",
-    "webpack-dev-server": "^2.5.0"
+    "webpack-dev-server": "^2.11.5"
   }
 }
