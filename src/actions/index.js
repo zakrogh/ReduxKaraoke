@@ -28,7 +28,7 @@ export function fetchSongId(title) {
     const localSongId = v4();
     dispatch(requestSong(title, localSongId));
     title = title.replace(' ', '_');
-    return fetch(`http://api.musixmatch.com/ws/1.1/track.search?&q_track=` + title + `&page_size=1&s_track_rating=desc&apikey=${process.env.API_KEY}`).then(
+    return fetch(`https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?&q_track=` + title + `&page_size=1&s_track_rating=desc&apikey=${process.env.API_KEY}`).then(
 
       response => response.json(),
       error => console.log('An error occurred.', error)
@@ -46,7 +46,7 @@ export function fetchSongId(title) {
 }
 
 export function fetchLyrics(title, artist, musicMatchId, localSongId, dispatch) {
-  return fetch(`http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=` + musicMatchId + `&apikey=${process.env.API_KEY}`).then(
+  return fetch(`https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=` + musicMatchId + `&apikey=${process.env.API_KEY}`).then(
     response => response.json(),
     error => console.log('An error occurred.', error)
   ).then(function(json) {
