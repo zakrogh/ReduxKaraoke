@@ -22,6 +22,15 @@ export const requestSong = (title, localSongId) => ({
   songId: localSongId
 });
 
+export const receiveSong = (title, artist, songId, songArray) => ({
+  type: types.RECEIVE_SONG,
+  songId,
+  title,
+  artist,
+  songArray,
+  receivedAt: Date.now()
+});
+
 /*eslint-disable*/
 export function fetchSongId(title) {
   return function (dispatch) {
@@ -50,7 +59,15 @@ export function fetchLyrics(title, artist, musicMatchId, localSongId, dispatch) 
     response => response.json(),
     error => console.log('An error occurred.', error)
   ).then(function(json) {
-    console.log('HEY WOW, A SECOND API RESPONSE!', json);
+    if (json.message.body.lyrics) {
+      let lyrics = json.message.body.lyrics.lyrics_body;
+      lyrics = lyrics.replace('"', '');
+      const songArray = lyrics.split(/\n/g).filter(entry => entry!="");
+      dispatch(receiveSong(title, artist, localSongId, songArray));
+      dispatch(changeSong(localSongId));
+    } else {
+      console.log('We couldn\'t locate lyrics for this song!');
+    }
   });
 }
 /*eslint-enable*/
